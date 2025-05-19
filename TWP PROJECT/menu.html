@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Menu - Milkshake Haven</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    .menu-section {
+      padding: 60px 0;
+      background-color: #fff0f5;
+      text-align: center;
+    }
+
+    .menu-section h2 {
+      font-size: 36px;
+      color: #800080;
+      margin-bottom: 30px;
+    }
+
+    .flavor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 0 20px;
+    }
+
+    .flavor-card {
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .flavor-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(128, 0, 128, 0.3);
+    }
+
+    .flavor-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .flavor-card h3 {
+      padding: 15px 15px 0 15px;
+      font-size: 20px;
+      color: #4a004a;
+    }
+
+    .flavor-card button {
+      margin: 15px;
+      background-color: #ff69b4;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .flavor-card button:hover {
+      background-color: #d94f9f;
+    }
+
+    .cart-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #800080;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Include -->
+  <header class="site-header">
+    <div class="container header-content">
+      <div class="logo"><h1>Milkshake <span>Haven</span></h1></div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html" class="active">Menu</a></li>
+          <li><a href="order.html">Order</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Menu Section -->
+  <section class="menu-section">
+    <div class="container">
+      <h2>Our Milkshake Flavors</h2>
+      <div class="flavor-grid" id="flavorGrid"></div>
+      <a class="cart-link" href="cart.html">🛒 View Cart</a>
+    </div>
+  </section>
+
+  <!-- Footer Include -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-section">
+        <h3>About Us</h3>
+        <p>Milkshake Haven brings joy through every sip of creamy deliciousness.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Links</h3>
+        <a href="index.html">Home</a><br />
+        <a href="menu.html">Menu</a><br />
+        <a href="order menu.html">Order</a><br />
+      </div>
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>Email: info@milkshakehaven.com</p>
+        <p>Phone: +1-234-567-890</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const milkshakes = [
+      { id: 1, name: "Fruit Mix Milkshake", price:  8, image: "mm.png" },
+      { id: 2, name: "Chocolate Swirl", price: 9, image: "coklat.png" },
+      { id: 3, name: "Summer Flavoured", price: 7, image: "summer.png" },
+      { id: 4, name: "Ice Cream Delight", price: 9, image: "ice.png" },
+    ];
+
+    const flavorGrid = document.getElementById("flavorGrid");
+
+    milkshakes.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "flavor-card";
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" />
+        <h3>${item.name}</h3>
+        <p>Price: $${item.price}</p>
+        <button onclick="addToCart(${item.id})">Add to Cart</button>
+      `;
+      flavorGrid.appendChild(card);
+    });
+
+    function addToCart(id) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const item = milkshakes.find(i => i.id === id);
+      const exists = cart.find(p => p.id === id);
+      if (exists) {
+        exists.quantity++;
+      } else {
+        cart.push({ ...item, quantity: 1 });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${item.name} added to cart.`);
+    }
+  </script>
+</body>
+</html>

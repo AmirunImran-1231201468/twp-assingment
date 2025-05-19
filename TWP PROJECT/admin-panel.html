@@ -1,94 +1,76 @@
+<!-- admin-dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Panel - Milkshake Haven</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Milkshake Haven</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #fff0f5;
+      margin: 0;
     }
-
-    .sidebar {
-      height: 100vh;
-      width: 220px;
-      position: fixed;
+    header {
       background-color: #800080;
-      padding-top: 20px;
-      color: #fff;
-    }
-
-    .sidebar h2 {
+      color: white;
+      padding: 15px;
       text-align: center;
-      color: #ffb6c1;
     }
-
-    .sidebar a {
-      display: block;
-      padding: 15px 20px;
-      text-decoration: none;
+    nav {
+      text-align: center;
+      background-color: #d291bc;
+      padding: 10px;
+    }
+    nav a {
       color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
       font-weight: bold;
-      transition: background 0.3s;
     }
-
-    .sidebar a:hover {
-      background-color: #ff69b4;
+    nav a:hover {
+      color: #ffcccb;
     }
-
-    .main-content {
-      margin-left: 220px;
-      padding: 40px;
+    main {
+      padding: 30px;
+      text-align: center;
     }
-
-    .card {
+    h2 {
+      color: #800080;
+    }
+    .dashboard-links a {
+      display: inline-block;
       background-color: #ffa07a;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      color: #4a004a;
-      box-shadow: 0 4px 8px rgba(128, 0, 128, 0.2);
+      color: white;
+      padding: 15px 25px;
+      margin: 10px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s;
     }
-
-    .card h3 {
-      margin-top: 0;
+    .dashboard-links a:hover {
+      background-color: #ff7f50;
     }
   </style>
 </head>
 <body>
-
-  <div class="sidebar">
-    <h2>Admin Panel</h2>
-    <a href="#dashboard">Dashboard</a>
-    <a href="#staff">Manage Staff</a>
-    <a href="#product">Manage Product</a>
-    <a href="#sales">View Sales</a>
-    <a href="index.html">Logout</a>
-  </div>
-
-  <div class="main-content">
-    <section id="dashboard" class="card">
-      <h3>Dashboard</h3>
-      <p>Welcome back, Admin! Monitor your milkshake haven's performance here.</p>
-    </section>
-
-    <section id="staff" class="card">
-      <h3>Manage Staff</h3>
-      <p>View, add, edit, or remove staff members.</p>
-    </section>
-
-    <section id="product" class="card">
-      <h3>Manage Product</h3>
-      <p>Update your milkshake products, pricing, and availability.</p>
-    </section>
-
-    <section id="sales" class="card">
-      <h3>View Sales</h3>
-      <p>Review your latest orders, income reports, and sales trends.</p>
-    </section>
-  </div>
-
+  <header>
+    <h1>Milkshake Haven Admin Dashboard</h1>
+  </header>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="login.html">Logout</a>
+  </nav>
+  <main>
+    <h2>Admin Tools</h2>
+    <div class="dashboard-links">
+      <a href="manage-staff.html">Manage Staff</a>
+      <a href="manage-products.html">Manage Products</a>
+      <a href="view-sales.html">View Sales</a>
+      <a href="account.html">Admin Profile</a>
+    </div>
+  </main>
 </body>
 </html>

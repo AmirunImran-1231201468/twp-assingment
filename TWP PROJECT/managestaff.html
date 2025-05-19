@@ -1,0 +1,131 @@
+<!-- manage-staff.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Staff - Milkshake Haven</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #800080;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #800080;
+    }
+    form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    input, button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      flex: 1 1 200px;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #ffa07a;
+      color: white;
+    }
+    .delete-btn {
+      background-color: #d62828;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .delete-btn:hover {
+      background-color: #a61b1b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Manage Staff - Milkshake Haven</h1>
+  </header>
+  <main>
+    <h2>Staff List</h2>
+    <form id="staffForm">
+      <input type="text" id="staffName" placeholder="Staff Name" required />
+      <input type="text" id="staffRole" placeholder="Staff Role" required />
+      <button type="submit">Add Staff</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="staffList"></tbody>
+    </table>
+  </main>
+
+  <script>
+    const staffForm = document.getElementById("staffForm");
+    const staffList = document.getElementById("staffList");
+
+    staffForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name = document.getElementById("staffName").value;
+      const role = document.getElementById("staffRole").value;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${name}</td>
+        <td>${role}</td>
+        <td><button class="delete-btn">Delete</button></td>
+      `;
+
+      staffList.appendChild(row);
+      staffForm.reset();
+    });
+
+    staffList.addEventListener("click", function (e) {
+      if (e.target.classList.contains("delete-btn")) {
+        e.target.closest("tr").remove();
+      }
+    });
+  </script>
+</body>
+</html>
