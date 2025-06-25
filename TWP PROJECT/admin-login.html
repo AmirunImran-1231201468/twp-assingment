@@ -2,72 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Login</title>
+  <title>Admin Login - Milkshake Haven</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
+      background-color: #fff0f5;
       font-family: Arial, sans-serif;
-      background: #ffe6f0; /* Light Pink */
-      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
-    .form-container {
-      width: 400px;
-      margin: auto;
-      background: #fff;
+
+    .login-box {
+      background: white;
       padding: 30px;
       border-radius: 10px;
-      border: 2px solid #ff9966; /* Orange */
-      box-shadow: 0 0 12px rgba(255, 105, 180, 0.2);
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
     }
+
     h2 {
       text-align: center;
-      color: #800080; /* Purple */
+      color: #800080;
     }
+
     input {
       width: 100%;
-      padding: 12px;
-      margin-top: 14px;
-      border: 1px solid #ff9966;
+      padding: 10px;
+      margin: 10px 0;
       border-radius: 5px;
+      border: 1px solid #ccc;
     }
+
     button {
       width: 100%;
-      margin-top: 20px;
-      background-color: #800080;
+      padding: 10px;
+      background-color: #ff69b4;
       color: white;
-      padding: 12px;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
-      transition: background-color 0.3s;
+      font-weight: bold;
+      cursor: pointer;
     }
+
     button:hover {
-      background-color: #ff66b2;
+      background-color: #e0559d;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
+  <div class="login-box">
     <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
+    <form id="adminLoginForm">
+      <input type="text" id="adminID" placeholder="Admin ID" required />
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <p class="error" id="errorMsg"></p>
+    </form>
   </div>
 
   <script>
-    function login() {
-      const inputUsername = document.getElementById("username").value;
-      const inputPassword = document.getElementById("password").value;
+    document.getElementById('adminLoginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-      const storedUsername = localStorage.getItem("adminUsername");
-      const storedPassword = localStorage.getItem("adminPassword");
+      const adminID = document.getElementById('adminID').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
 
-      if (inputUsername === storedUsername && inputPassword === storedPassword) {
-        alert("Login successful!");
-        window.location.href = "admin_dashboard.html";
+      // Example hardcoded credentials
+      if (adminID === 'AD001' && username === 'admin' && password === 'admin123') {
+        window.location.href = 'admin-dashboard.html';
       } else {
-        alert("Invalid credentials.");
+        document.getElementById('errorMsg').textContent = 'Invalid Admin ID or credentials.';
       }
-    }
+    });
   </script>
 </body>
 </html>
