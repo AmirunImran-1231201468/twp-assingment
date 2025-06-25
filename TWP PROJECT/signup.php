@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirmPassword = $_POST['confirmPassword'];
     $telephone = htmlspecialchars(trim($_POST['telephone']));
-    $studentId = isset($_POST['studentId']) ? htmlspecialchars(trim($_POST['studentId'])) : null;
 
     // Validate inputs
     $errors = [];
